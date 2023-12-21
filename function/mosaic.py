@@ -56,9 +56,9 @@ class mosaic:
         信頼度が指定された閾値（conf_threshold）よりも低い場合、その顔の検出結果は無視されます.
         """
         # 画像を読み込みます. ここではOpenCVのimread関数を使用しています. 
-        image = cv.imread(*********)
+        image = ***********
         # 画像の形状（高さ、幅、チャンネル数）を取得します.
-        h, w, _ = image.*******
+        h, w, _ = ***********
         # モデルの入力サイズを画像の幅と高さに設定します.
         self.model.setInputSize(*********)
         # モデルを使って画像から顔を検出します.
@@ -77,11 +77,11 @@ class mosaic:
             モザイク処理の程度を示す係数 (デフォルト: 20)
         """
         # 画像を読み込みます. face_detectionを使って顔を検出します.
-        detected_faces = self.face_detection(*********)
+        detected_faces = ************
         # 画像を読み込みます. ここではOpenCVのimread関数を使用しています.
-        image = cv.imread(*********)
+        image = ***********
         # 元の画像のコピーを作成します. このコピーに対して変更を加えます.
-        output = image.*********
+        output = *********
 
         # 検出結果を反復処理します. 各検出結果は、バウンディングボックスの座標を含む配列です.
         for *********
@@ -95,7 +95,7 @@ class mosaic:
             mosaic_face = cv.resize(small, (w, h), interpolation=cv.INTER_NEAREST)  # 顔部分を元のサイズに戻します.
             output[y:y + h, x:x + w] = mosaic_face  # モザイク処理した顔部分を元の画像に貼り付けます.
         # 矩形で囲まれた画像を保存する
-        cv.imwrite(*********, output)
+        ************
 
 
 if __name__ == '__main__':
