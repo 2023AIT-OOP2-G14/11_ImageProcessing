@@ -76,11 +76,6 @@ class frame:
             顔検出を行う画像のファイルパス
         box_color : tuple, optional
             矩形の色 (デフォルトは(0, 255, 0))
-
-        Returns
-        -------
-        output : numpy.ndarray
-            矩形で囲まれた画像のコピー
         """
         # 画像を読み込みます. face_detectionを使って顔を検出します.
         detected_faces = self.face_detection(*********)
