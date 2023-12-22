@@ -56,13 +56,13 @@ class mosaic:
         信頼度が指定された閾値（conf_threshold）よりも低い場合、その顔の検出結果は無視されます.
         """
         # 画像を読み込みます. ここではOpenCVのimread関数を使用しています. 
-        image = ***********
+        ************
         # 画像の形状（高さ、幅、チャンネル数）を取得します.
         h, w, _ = ***********
         # モデルの入力サイズを画像の幅と高さに設定します.
-        self.model.setInputSize(*********)
+        **************
         # モデルを使って画像から顔を検出します.
-        results = self.model.infer(image)
+        results = *************
         return results
 
     def mosaic_face(self,file_name, ********):
@@ -90,7 +90,7 @@ class mosaic:
             x, y, w, h = *********
 
             # 顔部分をモザイク処理します.
-            face_roi = image[***:****, ****:*****]  # 顔部分を切り出します.
+            face_roi = ***************  # 顔部分を切り出します.
             small = cv.resize(face_roi, None, fx=1.0 / factor, fy=1.0 / factor, interpolation=cv.INTER_NEAREST) # 顔部分を縮小します.
             mosaic_face = cv.resize(small, (w, h), interpolation=cv.INTER_NEAREST)  # 顔部分を元のサイズに戻します.
             output[y:y + h, x:x + w] = mosaic_face  # モザイク処理した顔部分を元の画像に貼り付けます.
