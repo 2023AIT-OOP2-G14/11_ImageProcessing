@@ -61,9 +61,9 @@ class frame:
         # 画像の形状（高さ、幅、チャンネル数）を取得します.
         h, w, _ = **********
         # モデルの入力サイズを画像の幅と高さに設定します.
-        self.model.setInputSize(*********)
+        ***************
         # モデルを使って画像から顔を検出します.
-        results = self.model.infer(image)
+        results = *************
         return results
     
     def visualize_faces(self, file_name, *********):
@@ -88,7 +88,7 @@ class frame:
             # バウンディングボックスの座標を整数に変換します.
             bbox = det[0:4].astype(np.int32)
             # バウンディングボックスを画像に描画します.
-            cv.rectangle(output, (bbox[****], bbox[****]), (bbox[****] + bbox[****], bbox[****] + bbox[****]), box_color, 2)
+            cv.rectangle(output, (bbox[****], bbox[****]), (bbox[****] + bbox[****], bbox[****] + bbox[****]), ********, *******)
         # 矩形で囲まれた画像を保存する
         *************
         
