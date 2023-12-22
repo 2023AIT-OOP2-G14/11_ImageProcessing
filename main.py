@@ -12,15 +12,13 @@ def index():
 
 # upload
 # パラメータ:upload_file　画像データ
-# パラメータ:override_file_name ファイル名を上書きする場合に指定
 @app.route('/upload', methods=["POST"])
 def upload():
     # パラメータの取得
     file = request.files.get('upload_file')
     overrideFileName = request.values['override_file_name']
-    category = request.values['category']
     # パスの生成
-    filePath = './img/' + category + '/' + fileName
+    filePath = './img/' + fileName
     # ファイル名の上書きチェック
     fileName = ""
     if(overrideFileName != ''): 
@@ -36,15 +34,13 @@ def upload():
         return False
 
 #delete
-# パラメータ:category 画像処理のカテゴリ(canny_filter, face_frame, face_mosaic, grayscale, object_detection)
 # パラメータ:file_name 削除するファイル名
 @app.route('/delete', methods=["POST"])
 def delete():
     # パラメータの取得
     fileName = request.files.get('file_name')
-    category = request.values['category']
     # パスの生成
-    filePath = './img/' + category + '/' + fileName
+    filePath = './img/' + fileName
     # 存在チェック
     if path.exists(filePath):
         # 削除処理
