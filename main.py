@@ -13,7 +13,6 @@ def index():
 # upload
 # パラメータ:upload_file　画像データ
 # パラメータ:override_file_name ファイル名を上書きする場合に指定
-# パラメータ:category 画像処理のカテゴリ(canny_filter, face_frame, face_mosaic, grayscale, object_detection)
 @app.route('/upload', methods=["POST"])
 def upload():
     # パラメータの取得
@@ -31,14 +30,10 @@ def upload():
     # 拡張子チェック pdf以外は弾く
     if fileName.endswith('.png'):
         # 保存処理
-        try:
-            with open(filePath) as f:
-                f.write(file.read())
-        except FileExistsError:
-            # ファイルが存在した場合
-            print("FileExistsError")
-            return ""
-    return fileName
+        file.save(filePath)
+        return True
+    else:
+        return False
 
 #delete
 # パラメータ:category 画像処理のカテゴリ(canny_filter, face_frame, face_mosaic, grayscale, object_detection)
