@@ -12,13 +12,13 @@ class canny:
             print("Unable to read the image.")
         
         # Cannyフィルタを適用
-        edges = cv.Canny(image, 50, 150)  # 50と150は閾値の下限と上限を表します
+        edges = cv.Canny(image, 50, 150)  # 50と150は閾値の下限と上限
 
         #保存するためのパス
         save_path = "./img/canny_filter/" + file_name
 
         # 結果の保存
-        
+        cv.imwrite(save_path, edges)
 
 if __name__ == "__main__":
     file_name = "Lenna.png"
