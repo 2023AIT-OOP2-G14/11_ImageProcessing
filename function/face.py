@@ -4,7 +4,8 @@ import numpy as np
 from yunet import YuNet
 
 class frame:
-    def __init__(self, ****************):
+    def __init__(self, model_path='./face_detection_yunet_2023mar.onnx', input_size=[320, 320],
+                  conf_threshold=0.9, nms_threshold=0.3, top_k=5000):
         """
         FaceDetectorクラスのコンストラクタです.
 
@@ -23,13 +24,13 @@ class frame:
         """
         # YuNetモデルのインスタンスを作成します.
         self.model = YuNet(
-            modelPath=*********,        # modelPath: モデルのパス
-            inputSize=*********,        # inputSize: モデルの入力サイズ
-            confThreshold=*********,    # 信頼度の閾値。この値以上の信頼度を持つバウンディングボックスのみが結果として出力されます。
-            nmsThreshold=*********,     # 非最大抑制(NMS)の閾値。この値以上のIoUを持つバウンディングボックスは、NMSにより抑制されます。
-            topK=*********,             # 上位のバウンディングボックスの数. この数だけバウンディングボックスが出力されます。
-            backendId=********,         # バックエンドのID. ここではOpenCVのDNNバックエンドを使用します。(例: cv.dnn.DNN_BACKEND_OPENCV)
-            targetId=*********          # ターゲットのID ここではCPUをターゲットとします。(例: cv.dnn.DNN_TARGET_CPU)
+            modelPath=model_path,        # modelPath: モデルのパス
+            inputSize=input_size,        # inputSize: モデルの入力サイズ
+            confThreshold=conf_threshold,    # 信頼度の閾値。この値以上の信頼度を持つバウンディングボックスのみが結果として出力されます。
+            nmsThreshold=nms_threshold,     # 非最大抑制(NMS)の閾値。この値以上のIoUを持つバウンディングボックスは、NMSにより抑制されます。
+            topK=top_k,             # 上位のバウンディングボックスの数. この数だけバウンディングボックスが出力されます。
+            backendId=cv.dnn.DNN_BACKEND_OPENCV,         # バックエンドのID. ここではOpenCVのDNNバックエンドを使用します。(例: cv.dnn.DNN_BACKEND_OPENCV)
+            targetId=cv.dnn.DNN_TARGET_CPU          # ターゲットのID ここではCPUをターゲットとします。(例: cv.dnn.DNN_TARGET_CPU)
         )
 
 
