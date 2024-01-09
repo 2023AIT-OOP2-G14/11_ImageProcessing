@@ -91,10 +91,10 @@ class frame:
             # バウンディングボックスを画像に描画します.
             cv.rectangle(output, (bbox[0], bbox[1]), (bbox[0] + bbox[2], bbox[1] + bbox[3]), box_color, 2)
         # 矩形で囲まれた画像を保存する
-        cv.imwrite("./img/face_frame", output)
+        cv.imwrite("./img/face_frame/dummy.jpg", output)
         
         
 if __name__ == '__main__':
-    file_name = " ./img"
+    file_name = " ./img/Lenna.png"
     fr = frame()
     fr.visualize_faces(file_name)
