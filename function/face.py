@@ -58,16 +58,16 @@ class frame:
         信頼度が指定された閾値（conf_threshold）よりも低い場合、その顔の検出結果は無視されます.
         """
         # 画像を読み込みます. ここではOpenCVのimread関数を使用しています. 
-        ************
+        image = cv.imread(file_name)
         # 画像の形状（高さ、幅、チャンネル数）を取得します.
-        h, w, _ = **********
+        h, w, _ = image.shape
         # モデルの入力サイズを画像の幅と高さに設定します.
-        ***************
+        self.model.setInputSize([w, h])
         # モデルを使って画像から顔を検出します.
-        results = *************
+        results = self.model.infer(image)
         return results
     
-    def visualize_faces(self, file_name, *********):
+    def visualize_faces(self, file_name, box_color=(0, 255, 0)):
         """
         与えられた画像に対して顔を検出し、矩形で囲みます.
 
@@ -79,21 +79,22 @@ class frame:
             矩形の色 (デフォルトは(0, 255, 0))
         """
         # 画像を読み込みます. face_detectionを使って顔を検出します.
-        detected_faces = *********
+        detected_faces = self.face_detection(file_name)
         # 画像を読み込みます. ここではOpenCVのimread関数を使用しています.
-        image = **********
+        image = cv.imread(file_name)
         # 元の画像のコピーを作成します. このコピーに対して変更を加えます.
-        output = ************
+        output = image.copy()
         # 検出結果を反復処理します. 各検出結果は、バウンディングボックスの座標を含む配列です.
-        for ********
+        for det in detected_faces:
             # バウンディングボックスの座標を整数に変換します.
             bbox = det[0:4].astype(np.int32)
             # バウンディングボックスを画像に描画します.
-            cv.rectangle(output, (bbox[****], bbox[****]), (bbox[****] + bbox[****], bbox[****] + bbox[****]), ********, *******)
+            cv.rectangle(output, (bbox[0], bbox[1]), (bbox[0] + bbox[2], bbox[1] + bbox[3]), box_color, 2)
         # 矩形で囲まれた画像を保存する
-        *************
+        cv.imwrite("./img/face_frame/dummy.jpg", output)
         
         
 if __name__ == '__main__':
+    file_name = " ./img/Lenna.png"
     fr = frame()
-    fr.visualize_faces(*********)
+    fr.visualize_faces(file_name)
